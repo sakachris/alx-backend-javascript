@@ -5,7 +5,7 @@ export default function cleanSet(set, startString) {
     return '';
   }
 
-  for (const value of set) {
+  for (const value of set.values()) {
     if (value.startsWith(startString)) {
       newArray.push(value.slice(startString.length));
     }
