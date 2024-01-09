@@ -6,8 +6,11 @@ export default function cleanSet(set, startString) {
   }
 
   for (const value of set.values()) {
-    if (value.startsWith(startString)) {
-      newArray.push(value.slice(startString.length));
+    if (typeof value === 'string' && value.startsWith(startString)) {
+      const subStr = value.substring(startString.length);
+      if (subStr && subStr !== value) {
+        newArray.push(subStr);
+      }
     }
   }
 
