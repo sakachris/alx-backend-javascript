@@ -18,7 +18,7 @@ const countStudents = (path) => {
     console.log(`Number of students: ${lines.length}`);
 
     for (const field in counters) {
-      if (Object.prototype.hasOwnProperty.call(counters, field)) { // Fix applied here
+      if (Object.prototype.hasOwnProperty.call(counters, field)) {
         const studentsList = lines
           .filter((line) => line.split(',')[fieldNames.indexOf('field')] === field)
           .map((line) => line.split(',')[fieldNames.indexOf('firstname')]);
