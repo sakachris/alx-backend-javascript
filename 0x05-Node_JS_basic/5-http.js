@@ -32,8 +32,9 @@ const app = http.createServer((req, res) => {
       .then(({ lines, fieldNames, counters }) => {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.write('This is the list of our students\n');
+        const totalStudents = lines.length; // Calculate total students
 
-        console.log(`Number of students: ${lines.length}`);
+        res.write(`Number of students: ${totalStudents}\n`); // Send total students count
 
         for (const field in counters) {
           if (Object.prototype.hasOwnProperty.call(counters, field)) {
@@ -43,7 +44,6 @@ const app = http.createServer((req, res) => {
             res.write(`Number of students in ${field}: ${counters[field]}. List: ${studentsList.join(', ')}\n`);
           }
         }
-        // Removed the newline character here
         res.end(); // End the response after sending all data
       })
       .catch(() => {
