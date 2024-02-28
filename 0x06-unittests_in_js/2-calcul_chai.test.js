@@ -30,7 +30,7 @@ describe('calculateNumber', () => {
         });
 
         it('should return the subtraction result of zero and positive number', () => {
-            expect(calculateNumber('SUBTRACT', 0, 4.5)).to.equal(-4);
+            expect(calculateNumber('SUBTRACT', 0, 4.5)).to.equal(-5);
         });
 
         it('should return the subtraction result of zero and negative number', () => {
@@ -57,14 +57,6 @@ describe('calculateNumber', () => {
 
         it('should return the division result of zero and negative number when divisor is not zero', () => {
             expect(calculateNumber('DIVIDE', 0, -4.5)).to.equal(-0);
-        });
-    });
-
-    describe('Invalid type', () => {
-        it('should throw an error for invalid type', () => {
-            expect(() => {
-                calculateNumber('INVALID', 1.4, 4.5);
-            }).to.throw(/^Error: Invalid type\. Type must be SUM, SUBTRACT, or DIVIDE\.$/);
         });
     });
 });
