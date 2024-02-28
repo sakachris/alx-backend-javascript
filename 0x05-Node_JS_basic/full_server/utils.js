@@ -8,13 +8,14 @@ const readDatabase = (filePath) => new Promise((resolve, reject) => {
       const lines = data.trim().split('\n');
       const studentsByField = {};
 
-      lines.forEach((line) => {
-        const [firstname, , , field] = line.split(',');
+      for (let i = 1; i < lines.length; i += 1) {
+        const line = lines[i].split(',');
+        const field = line[line.length - 1];
         if (!studentsByField[field]) {
           studentsByField[field] = [];
         }
-        studentsByField[field].push(firstname);
-      });
+        studentsByField[field].push(line[0]);
+      }
 
       resolve(studentsByField);
     }
