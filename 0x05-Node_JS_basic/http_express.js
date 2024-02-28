@@ -34,8 +34,7 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
         }
 
         const totalStudents = Object.values(studentGroups).reduce(
-          (previous, current) => previous + current.length,
-          0,
+          (previous, current) => (previous || []).length + current.length,
         );
         reportParts.push(`Number of students: ${totalStudents}`);
         for (const [field, group] of Object.entries(studentGroups)) {
@@ -63,15 +62,17 @@ app.get('/students', (_, res) => {
       responseParts.push(report);
       const responseText = responseParts.join('\n');
       res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Content-Length', Buffer.byteLength(responseText));
-      res.status(200).send(responseText);
+      res.setHeader('Content-Length', responseText.length);
+      res.statusCode = 200;
+      res.write(Buffer.from(responseText));
     })
     .catch((error) => {
       responseParts.push(error instanceof Error ? error.message : error.toString());
       const responseText = responseParts.join('\n');
       res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Content-Length', Buffer.byteLength(responseText));
-      res.status(200).send(responseText);
+      res.setHeader('Content-Length', responseText.length);
+      res.statusCode = 200;
+      res.write(Buffer.from(responseText));
     });
 });
 
