@@ -26,8 +26,6 @@ app.get('/available_payments', (req, res) => {
   });
 });
 
-app.use(express.json());
-
 app.post('/login', (req, res) => {
   const { userName } = req.body;
   res.send(`Welcome ${userName}`);
