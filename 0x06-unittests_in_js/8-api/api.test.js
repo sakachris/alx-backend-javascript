@@ -1,8 +1,6 @@
 const request = require('request');
 const { expect } = require('chai');
 
-// const app = require('./api');
-
 describe('Index page', () => {
   it('Correct GET/ Response', (done) => {
     request.get('http://localhost:7865', (error, response, body) => {
@@ -13,10 +11,10 @@ describe('Index page', () => {
     });
   });
 
-  /*it('Correct result?', (done) => {
+  it('Correct result?', (done) => {
     request.get('http://localhost:7865', (error, response, body) => {
       if (error) return done(error);
-      expect(body).to.equal('Welcome to the payment system');
+      expect(body).to.be.equal('Welcome to the payment system');
       done();
     });
   });
@@ -24,7 +22,7 @@ describe('Index page', () => {
   it('Correct response for invalid route?', (done) => {
     request.get('http://localhost:7865/invalid', (error, response, body) => {
       if (error) return done(error);
-      expect(response.statusCode).to.equal(404);
+      expect(response.statusCode).to.be.equal(404);
       done();
     });
   });
@@ -32,8 +30,8 @@ describe('Index page', () => {
   it('Server should return 404 for invalid route', (done) => {
     request.get('http://localhost:7865/invalid', (error, response) => {
       if (error) return done(error);
-      expect(response.statusCode).to.equal(404);
+      expect(response.statusCode).to.be.equal(404);
       done();
     });
-  });*/
+  });
 });
